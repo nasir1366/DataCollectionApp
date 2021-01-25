@@ -4,13 +4,13 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "station_table")
 public class Station {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name = "station_id")
-    private int stationId = 0;
+    private String stationId = "1010";
 
     private String name = "";
     private String phoneNumber = "";
@@ -29,11 +29,11 @@ public class Station {
         this.id = id;
     }
 
-    public int getStationId() {
+    public String getStationId() {
         return stationId;
     }
 
-    public void setStationId(int stationId) {
+    public void setStationId(String stationId) {
         this.stationId = stationId;
     }
 

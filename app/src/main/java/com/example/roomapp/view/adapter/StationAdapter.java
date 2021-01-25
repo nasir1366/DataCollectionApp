@@ -9,17 +9,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.roomapp.R;
 import com.example.roomapp.databinding.ItemStationBinding;
+import com.example.roomapp.model.Station;
 import com.example.roomapp.viewmodel.StationViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.CustomHolder> {
-    private ArrayList<StationViewModel> stationViewModels ;
     private LayoutInflater inflater;
+    private List<Station> stations;
 
-    public StationAdapter(ArrayList<StationViewModel> arrayList){
-        stationViewModels = new ArrayList<>();
-        this.stationViewModels = arrayList;
+    public StationAdapter(List<Station> dataList){
+        stations = new ArrayList<>();
+        this.stations = dataList;
     }
 
     @NonNull
@@ -35,13 +37,13 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.CustomHo
 
     @Override
     public void onBindViewHolder(@NonNull CustomHolder holder, int position) {
-        StationViewModel stationViewModel = stationViewModels.get(position);
-        holder.bind(stationViewModel);
+        Station station = stations.get(position);
+        holder.bind(station);
     }
 
     @Override
     public int getItemCount() {
-        return stationViewModels.size();
+        return stations.size();
     }
 
     static class CustomHolder extends RecyclerView.ViewHolder{
@@ -52,8 +54,8 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.CustomHo
             super(itemStationBinding.getRoot());
             this.itemStationBinding = itemStationBinding;
         }
-        private void bind(StationViewModel stationViewModel){
-            this.itemStationBinding.setItem(stationViewModel);
+        private void bind(Station station){
+            this.itemStationBinding.setItem(station);
             this.itemStationBinding.executePendingBindings();
         }
 

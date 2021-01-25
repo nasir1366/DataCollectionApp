@@ -1,5 +1,6 @@
 package com.example.roomapp.data;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -8,32 +9,32 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.roomapp.model.Station;
-
-import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.Completable;
-import io.reactivex.Flowable;
-import io.reactivex.Single;
 
 @Dao
 public interface StationDao {
-    @Query("SELECT * FROM station")
-    public Flowable<List<Station>> getAll();
+    @Query("SELECT * FROM station_table")
+    public LiveData<List<Station>> getAll();
 
-    @Query("SELECT * FROM station WHERE id IN (:stationIds)")
-    public Flowable<List<Station>> loadAllByIds(int[] stationIds);
+    @Query("SELECT * FROM station_table WHERE id IN (:stationIds)")
+    public LiveData<List<Station>> loadAllByIds(int[] stationIds);
 
-    @Query("SELECT * FROM station WHERE name LIKE :name LIMIT 1")
-    public Flowable<Station> findByName(String name);
+    @Query("SELECT * FROM station_table WHERE name LIKE :name LIMIT 1")
+    public LiveData<Station> findByName(String name);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public Completable insertAll(ArrayList<Station> stations);
+    public void insertAll(List<Station> stations);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insert(Station station);
 
     @Update
-    public Completable updateAll(ArrayList<Station> stations);
+    public void updateAll(List<Station> stations);
 
     @Delete
-    public Completable delete(Station station);
+    public void delete(Station station);
+
+    @Query("DELETE FROM station_table")
+    public void deleteAll();
 
 }

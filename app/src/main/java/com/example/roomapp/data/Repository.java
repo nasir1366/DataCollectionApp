@@ -1,29 +1,45 @@
 package com.example.roomapp.data;
 
 import android.app.Application;
-
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import com.example.roomapp.model.Station;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import kotlinx.coroutines.flow.Flow;
-
 public class Repository {
-    private StationDao dao;
-    private ArrayList<Station> stations;
+    private final StationDao dao;
 
 
-    Repository(Application application) {
+    public Repository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         dao = db.stationDao();
 
     }
 
-    public List<Station>  getAllStations(){
-
+    public LiveData<List<Station>> getAllStations(){
+        LiveData<List<Station>> stations = new MutableLiveData<List<Station>>();
+        stations = dao.getAll();
         return stations;
     }
+
+    public void insert(Station station){
+        AppDatabase.databaseWriteExecutor.execute(
+                () -> dao.insert(station)
+        );
+    }
+
+    public void insertList(List<Station> stationList){
+        AppDatabase.databaseWriteExecutor.execute(
+                () -> dao.insertAll(stationList)
+        );
+    }
+
+    public void deleteTable(){
+        AppDatabase.databaseWriteExecutor.execute(
+                dao::deleteAll
+        );
+    }
+
 
 
 }

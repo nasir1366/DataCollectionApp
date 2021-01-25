@@ -2,16 +2,20 @@ package com.example.roomapp.data;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.roomapp.model.Station;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Station.class}, version = 1)
+@Database(entities = {Station.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract StationDao stationDao();
 
