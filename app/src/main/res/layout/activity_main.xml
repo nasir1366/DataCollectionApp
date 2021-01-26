@@ -3,8 +3,8 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="station"
-            type="com.example.roomapp.viewmodel.StationViewModel" />
+            name="mainrecycledata"
+            type="com.example.roomapp.viewmodel.AppViewModel" />
 
     </data>
     <LinearLayout
@@ -14,7 +14,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            bind:recyclerStation="@{station.stations}"
+            bind:recyclerdata="@{mainrecycledata.mainRecyclerlist}"
 
             />
 

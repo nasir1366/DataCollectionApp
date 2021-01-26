@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.roomapp.App;
 import com.example.roomapp.R;
-import com.example.roomapp.model.Station;
-import com.example.roomapp.view.adapter.StationAdapter;
+import com.example.roomapp.view.adapter.MainRecyclerAdapter;
+import com.example.roomapp.model.MainRecyclerModel;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -21,15 +21,18 @@ import java.util.List;
 
 public class BindingAdapters {
 
-    @BindingAdapter("bind:recyclerStation")
-    public static void recyclerViewBinder(final RecyclerView recyclerView , final LiveData<List<Station>> listLiveData){
+    @BindingAdapter("bind:recyclerdata")
+    public static void recyclerViewBinder(final RecyclerView recyclerView
+            , final LiveData<List<MainRecyclerModel>> listLiveData){
 
-        listLiveData.observe((LifecycleOwner) recyclerView.getContext(), new Observer<List<Station>>() {
-            @Override
-            public void onChanged(List<Station> stations) {
-                StationAdapter adapter = new StationAdapter(listLiveData.getValue());
-                recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()
+        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()
                 ,LinearLayoutManager.VERTICAL,false));
+
+        listLiveData.observe((LifecycleOwner) recyclerView.getContext(), new Observer<List<MainRecyclerModel>>() {
+            @Override
+            public void onChanged(List<MainRecyclerModel> mainRecyclerModelList) {
+                MainRecyclerAdapter adapter = new MainRecyclerAdapter(listLiveData.getValue());
+
                 recyclerView.setAdapter(adapter);
             }
         });

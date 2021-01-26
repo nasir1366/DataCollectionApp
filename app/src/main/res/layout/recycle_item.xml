@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data class="ItemRecyclerBinding">
+        <variable
+            name="item"
+            type="com.example.roomapp.model.MainRecyclerModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.station.name}"
+            android:hint="name"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:id="@+id/station_name"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.station.stationId}"
+            android:hint="id"
+            android:layout_below="@id/station_name"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/bat_volt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.sensorData.batteryVoltage.toString()}"
+            android:hint="batt_volt"
+            android:layout_toEndOf="@id/station_name"
+            android:layout_marginStart="30dp"
+            android:layout_toRightOf="@id/station_name"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/blue"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bat_volt"
+            android:layout_alignLeft="@id/bat_volt"
+            android:layout_alignStart="@id/bat_volt"
+            android:text="@{item.sensorData.innerTemperature.toString()}"
+            android:hint="temp_in"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/green"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            app:imageUrl ="@{item.station.imageUrl}"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+    </RelativeLayout>
+</layout>

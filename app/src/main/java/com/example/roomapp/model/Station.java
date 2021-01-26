@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "station_table")
 public class Station {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private Long id;
 
     @ColumnInfo(name = "station_id")
     private String stationId = "1010";
@@ -21,11 +21,11 @@ public class Station {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -76,4 +76,6 @@ public class Station {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+
 }

@@ -3,40 +3,46 @@ package com.example.roomapp.data;
 import android.app.Application;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.example.roomapp.data.AppDatabase;
+import com.example.roomapp.data.SensorDataDao;
+import com.example.roomapp.data.StationDao;
+import com.example.roomapp.model.SensorData;
 import com.example.roomapp.model.Station;
 import java.util.List;
 
-public class Repository {
-    private final StationDao dao;
+public class RepositoryStations {
+    private final StationDao stationDao;
 
 
-    public Repository(Application application) {
+    public RepositoryStations(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
-        dao = db.stationDao();
+        stationDao = db.stationDao();
 
     }
 
     public LiveData<List<Station>> getAllStations(){
         LiveData<List<Station>> stations = new MutableLiveData<List<Station>>();
-        stations = dao.getAll();
+        stations = stationDao.getAll();
         return stations;
     }
 
+
     public void insert(Station station){
         AppDatabase.databaseWriteExecutor.execute(
-                () -> dao.insert(station)
+                () -> stationDao.insert(station)
         );
     }
 
     public void insertList(List<Station> stationList){
         AppDatabase.databaseWriteExecutor.execute(
-                () -> dao.insertAll(stationList)
+                () -> stationDao.insertAll(stationList)
         );
     }
 
     public void deleteTable(){
         AppDatabase.databaseWriteExecutor.execute(
-                dao::deleteAll
+                stationDao::deleteAll
         );
     }
 

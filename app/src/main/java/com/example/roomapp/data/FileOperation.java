@@ -15,18 +15,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class FileOperation {
     private static final String TAG = "file_operation";
 
-//    private File extDir;
-//    private Context context;
-//
-//    public FileOperation(Context context){
-//        this.context = context;
-//        extDir = Environment.getExternalStorageDirectory();
-//        Log.i(TAG,"external storage path : "+extDir.getAbsolutePath());
-//    }
+    private static final int NUMBER_OF_THREADS = 4;
+
+    public static final ExecutorService FileExecutor =
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public static void copyFile(Context context , String destpath , String srcpath){
         if(!checkExternalStorage())
@@ -39,23 +37,29 @@ public class FileOperation {
             }
         }
 
-        int[] imageIDs = {0
-//                R.drawable.station1,
-//                R.drawable.station2,
-//                R.drawable.station3,
-//                R.drawable.station4,
-//                R.drawable.station5,
-//                R.drawable.station6,
-//                R.drawable.station7,
-//                R.drawable.station8,
-//                R.drawable.station9,
-//                R.drawable.station10,
-//                R.drawable.station11,
-//                R.drawable.station12
+        int[] imageIDs = {
+                R.drawable.station1,
+                R.drawable.station2,
+                R.drawable.station3,
+                R.drawable.station4,
+                R.drawable.station5,
+                R.drawable.station6,
+                R.drawable.station7,
+                R.drawable.station8,
+                R.drawable.station9,
+                R.drawable.station10,
+                R.drawable.station11,
+                R.drawable.station12,
+                R.drawable.station13,
+                R.drawable.station14,
+                R.drawable.station15,
+                R.drawable.station16,
+                R.drawable.station17,
+                R.drawable.station18,
         };
 
 
-        for(int i=1 ; i<12 ; i++) {
+        for(int i=1 ; i<18 ; i++) {
 
             Bitmap bm = BitmapFactory.decodeResource( context.getResources(),imageIDs[i]);
 
@@ -69,7 +73,7 @@ public class FileOperation {
                 Log.i(TAG,e.getMessage());
                 return;
             }
-            bm.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
+            bm.compress(Bitmap.CompressFormat.JPEG, 10, outStream);
             try {
                 outStream.flush();
                 outStream.close();
