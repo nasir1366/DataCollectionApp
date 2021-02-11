@@ -4,21 +4,29 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.roomapp.data.AppDatabase;
-import com.example.roomapp.data.SensorDataDao;
-import com.example.roomapp.data.StationDao;
-import com.example.roomapp.model.SensorData;
 import com.example.roomapp.model.Station;
 import java.util.List;
 
 public class RepositoryStations {
     private final StationDao stationDao;
-
+    private static RepositoryStations instanse = null;
 
     public RepositoryStations(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         stationDao = db.stationDao();
 
+    }
+
+    public static RepositoryStations getInstanse(Application application){
+        if(instanse == null){
+            instanse = new RepositoryStations(application);
+        }
+        return instanse;
+    }
+
+    public static RepositoryStations getInstanse(){
+
+        return instanse;
     }
 
     public LiveData<List<Station>> getAllStations(){

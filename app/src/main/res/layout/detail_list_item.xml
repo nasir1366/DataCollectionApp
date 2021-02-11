@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data class="ItemDetailRecyclerBinding">
+        <variable
+            name="item"
+            type="com.example.roomapp.model.SensorData" />
+
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/date_time"
+            android:hint="1399/12/12 - 21:55:32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingEnd="20dp"
+            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:paddingLeft="20dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/datapack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/solar_volt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="@{item.solarVoltage.toString()}"
+                android:hint="solar volt"
+                app:layout_constraintLeft_toRightOf="@id/icon_solar"
+                app:layout_constraintTop_toTopOf="@id/icon_solar"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                />
+
+            <TextView
+                android:id="@+id/tempOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="outer temp"
+                android:text="@{item.outerTemperature.toString()}"
+                app:layout_constraintTop_toTopOf="@id/icon_simcharge"
+                app:layout_constraintLeft_toLeftOf="@id/solar_volt"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                />
+
+            <TextView
+                android:id="@+id/log_rain_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="log rain level"
+                android:text="@{item.logRainLevel.toString()}"
+                app:layout_constraintStart_toEndOf="@id/icon_lograinlevel"
+                app:layout_constraintTop_toTopOf="@id/icon_lograinlevel"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="barometric"
+                android:text="@{item.barometricPressure.toString()}"
+                app:layout_constraintStart_toStartOf="@id/log_rain_level"
+                app:layout_constraintTop_toTopOf="@id/icon_baropressure"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_solar"
+                android:background="@color/red"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_simcharge"
+                android:background="@color/green"
+                app:layout_constraintLeft_toLeftOf="@id/icon_solar"
+                app:layout_constraintTop_toBottomOf="@id/icon_solar"
+                android:layout_marginTop="10dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_lograinlevel"
+                android:background="@color/blue"
+                app:layout_constraintStart_toEndOf="@id/solar_volt"
+                app:layout_constraintTop_toTopOf="@id/solar_volt"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_baropressure"
+                android:background="@color/black"
+                app:layout_constraintStart_toStartOf="@id/icon_lograinlevel"
+                app:layout_constraintTop_toTopOf="@id/tempOut"
+                android:layout_width="18dp"
+                android:layout_height="18dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</layout>

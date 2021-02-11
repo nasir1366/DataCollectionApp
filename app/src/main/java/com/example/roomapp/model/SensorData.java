@@ -1,16 +1,15 @@
 package com.example.roomapp.model;
 
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "sensordata_table")
 public class SensorData {
 
     @PrimaryKey(autoGenerate = true)
-    public Integer dataId;
+    public Long dataId;
 
-    public Long stationRelatedId;
+    public String stationRelatedId;
 
     private Integer innerTemperature=0,outerTemperature=0;
     private Double rainLevel=0.0,logRainLevel=0.0;
@@ -24,11 +23,11 @@ public class SensorData {
 
 
 
-    public Integer getDataId() {
+    public Long getDataId() {
         return dataId;
     }
 
-    public void setDataId(Integer dataId) {
+    public void setDataId(Long dataId) {
         this.dataId = dataId;
     }
 

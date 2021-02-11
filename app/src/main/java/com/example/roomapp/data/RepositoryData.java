@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.roomapp.model.SensorData;
-import com.example.roomapp.model.Station;
 
 import java.util.List;
 

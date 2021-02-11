@@ -1,16 +1,16 @@
 package com.example.roomapp.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "station_table")
 public class Station {
-    @PrimaryKey(autoGenerate = true)
-    private Long id;
 
-    @ColumnInfo(name = "station_id")
-    private String stationId = "1010";
+    @PrimaryKey
+    @NonNull
+    private String stationId;
 
     private String name = "";
     private String phoneNumber = "";
@@ -21,13 +21,6 @@ public class Station {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getStationId() {
         return stationId;

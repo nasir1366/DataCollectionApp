@@ -16,9 +16,6 @@ public interface StationDao {
     @Query("SELECT * FROM station_table")
     public LiveData<List<Station>> getAll();
 
-    @Query("SELECT * FROM station_table WHERE id IN (:stationIds)")
-    public LiveData<List<Station>> loadAllByIds(int[] stationIds);
-
     @Query("SELECT * FROM station_table WHERE name LIKE :name LIMIT 1")
     public LiveData<Station> findByName(String name);
 

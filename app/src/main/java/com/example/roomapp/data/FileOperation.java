@@ -26,66 +26,67 @@ public class FileOperation {
     public static final ExecutorService FileExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    public static void copyFile(Context context , String destpath , String srcpath){
-        if(!checkExternalStorage())
-            return;
-        String extdir = Environment.getExternalStorageDirectory().toString();
-        File dir = new File(extdir,destpath);
-        if(!dir.exists()){
-            if(!dir.mkdirs()){
-                Log.i(TAG,"Can not create dir");
-            }
-        }
-
-        int[] imageIDs = {
-                R.drawable.station1,
-                R.drawable.station2,
-                R.drawable.station3,
-                R.drawable.station4,
-                R.drawable.station5,
-                R.drawable.station6,
-                R.drawable.station7,
-                R.drawable.station8,
-                R.drawable.station9,
-                R.drawable.station10,
-                R.drawable.station11,
-                R.drawable.station12,
-                R.drawable.station13,
-                R.drawable.station14,
-                R.drawable.station15,
-                R.drawable.station16,
-                R.drawable.station17,
-                R.drawable.station18,
-        };
-
-
-        for(int i=1 ; i<18 ; i++) {
-
-            Bitmap bm = BitmapFactory.decodeResource( context.getResources(),imageIDs[i]);
-
-            File file = new File(dir, "station" + i+".jpg");
-            FileOutputStream outStream = null;
-
-            try {
-                outStream = new FileOutputStream(file);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                Log.i(TAG,e.getMessage());
-                return;
-            }
-            bm.compress(Bitmap.CompressFormat.JPEG, 10, outStream);
-            try {
-                outStream.flush();
-                outStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.i(TAG , e.getMessage());
-            }
-
-
-        }
-
-    }
+//    public static void copyFile(Context context , String destpath , String srcpath){
+//        if(!checkExternalStorage())
+//            return;
+//        String extdir = Environment.getExternalStorageDirectory().toString();
+//        File dir = new File(extdir,destpath);
+//        if(!dir.exists()){
+//            if(!dir.mkdirs()){
+//                Log.i(TAG,"Can not create dir");
+//            }
+//        }
+//
+//        int[] imageIDs = {
+//                R.drawable.station1,
+//                R.drawable.station2,
+//                R.drawable.station3,
+//                R.drawable.station4,
+//                R.drawable.station5,
+//                R.drawable.station6,
+//                R.drawable.station7,
+//                R.drawable.station8,
+//                R.drawable.station9,
+//                R.drawable.station10,
+//                R.drawable.station11,
+//                R.drawable.station12,
+//                R.drawable.station13,
+//                R.drawable.station14,
+//                R.drawable.station15,
+//                R.drawable.station16,
+//                R.drawable.station17,
+//                R.drawable.station18,
+//        };
+//
+//
+//        for(int i=1 ; i<18 ; i++) {
+//
+//            Bitmap bm = BitmapFactory.decodeResource( context.getResources(),imageIDs[i]);
+//
+//            File file = new File(dir, "station" + i+".jpg");
+//            FileOutputStream outStream = null;
+//
+//            try {
+//                outStream = new FileOutputStream(file);
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//                Log.i(TAG,e.getMessage());
+//                return;
+//            }
+//            bm.compress(Bitmap.CompressFormat.JPEG, 50, outStream);
+//
+//            try {
+//                outStream.flush();
+//                outStream.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                Log.i(TAG , e.getMessage());
+//            }
+//
+//
+//        }
+//
+//    }
 
     public static void loadImageFromFile(ImageView imageView , String path , String filename){
         if(!checkExternalStorage())

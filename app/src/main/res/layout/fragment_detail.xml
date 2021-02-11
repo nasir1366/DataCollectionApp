@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
+    <data class="FragmentDetailBinding">
+        <variable
+            name="detailRecyclerdata"
+            type="com.example.roomapp.model.DetailRecyclerModel"
+
+            />
+
+    </data>
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:context=".view.DetailFragment">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detail_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            bind:detailrecycle="@{detailRecyclerdata.sensorDataList}"
+            />
+
+    </FrameLayout>
+
+</layout>
